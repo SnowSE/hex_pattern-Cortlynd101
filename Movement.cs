@@ -4,7 +4,7 @@ namespace hex_template
 {
     public class Movement
     {
-        //No code here yet, just the basics of an idea we briefly talked about.
+        //No code here yet, just the basics of an idea we briefly talked about. 
         public (int, int) MoveThroughLine((int, int) coordinate, string line)
         //This method will move a coordinate through a set of instructions in the form of a line,
         //then it will return the final destination of the coordinate.
