@@ -66,7 +66,7 @@ namespace hex_template
                     return false;
                 }
             }
-            Console.WriteLine("got here");
+            //Console.WriteLine("got here");
             return true;
         }
         public (int, int) MoveThroughLine((int, int) coordinate, string line)
