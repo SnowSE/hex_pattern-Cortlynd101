@@ -28,6 +28,7 @@ namespace hex_template
             file.Close();
             int NumberBlackTitles = 0;
             Console.WriteLine("{0} tiles are black", NumberBlackTitles);
+            
         }
     }
 }
