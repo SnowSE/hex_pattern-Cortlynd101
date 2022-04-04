@@ -23,6 +23,7 @@ namespace hex_template
             System.IO.StreamReader file = new(@"C:\Users\Cortl\Source\Repos\hex_pattern-Cortlynd101\HexTemplate\sample.txt"); //This will need to be changed for your individual machine!!!
 
             (int, int) finalPosition = (0, 0);
+            TileDictionary tileDictionary = new TileDictionary();
 
             while ((line = file.ReadLine()) != null)
             {
@@ -31,6 +32,16 @@ namespace hex_template
                 {
                     finalPosition = Movement.MoveThroughLine(finalPosition, line);
                     Console.WriteLine($"Final Postion is {finalPosition}");
+
+                    if (tileDictionary.Tiles.ContainsKey(finalPosition) == false)
+                    {
+                        tileDictionary.Tiles.Add(finalPosition, true);
+                    }
+                    else
+                    {
+                        tileDictionary.flip(finalPosition);
+                    }
+                    
                 }
                 else
                 {
@@ -39,6 +50,10 @@ namespace hex_template
                 
                 finalPosition = (0, 0);
             }
+
+            int blackTiles = tileDictionary.CountsBlackTiles();
+            Console.WriteLine($"Total number of black tiles: {blackTiles}");
+
             file.Close();
             int NumberBlackTitles = 0;
             Console.WriteLine("{0} tiles are black", NumberBlackTitles);
