@@ -27,8 +27,16 @@ namespace hex_template
             while ((line = file.ReadLine()) != null)
             {
                 Console.WriteLine("Students can work on this line now: {0}", line);
-                finalPosition = Movement.MoveThroughLine(finalPosition, line);
-                Console.WriteLine($"Final Postion is {finalPosition}");
+                if (Movement.ParseLine(line))
+                {
+                    finalPosition = Movement.MoveThroughLine(finalPosition, line);
+                    Console.WriteLine($"Final Postion is {finalPosition}");
+                }
+                else
+                {
+                    Console.WriteLine($"This line can not be parsed. ");
+                }
+                
                 finalPosition = (0, 0);
             }
             file.Close();
