@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hex_template", "hex_template.csproj", "{A7C9994B-95CA-447E-9E89-204F821D9B93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hex_template", "HexTemplate\hex_template.csproj", "{A7C9994B-95CA-447E-9E89-204F821D9B93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexTemplateSpec", "..\HexTemplate\HexTemplateSpec.csproj", "{6A3AFDE7-F5A9-4E15-B0B3-338F330E90CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HexTemplateSpecs.Specs", "HexTemplateSpecs.Specs\HexTemplateSpecs.Specs.csproj", "{4CCB0FC2-E131-4C0E-AB24-F44DB4730CA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{A7C9994B-95CA-447E-9E89-204F821D9B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7C9994B-95CA-447E-9E89-204F821D9B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7C9994B-95CA-447E-9E89-204F821D9B93}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6A3AFDE7-F5A9-4E15-B0B3-338F330E90CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6A3AFDE7-F5A9-4E15-B0B3-338F330E90CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6A3AFDE7-F5A9-4E15-B0B3-338F330E90CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6A3AFDE7-F5A9-4E15-B0B3-338F330E90CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CCB0FC2-E131-4C0E-AB24-F44DB4730CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCB0FC2-E131-4C0E-AB24-F44DB4730CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCB0FC2-E131-4C0E-AB24-F44DB4730CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCB0FC2-E131-4C0E-AB24-F44DB4730CA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
