@@ -4,72 +4,48 @@ namespace hex_template
 {
     public class Movement
     {
-        //No code here yet, just the basics of an idea we briefly talked about. 
-        public bool ParseLine(string line)
+        public static bool ParseLine(string line)
+        //This method returns a bool representing wether or not the line can be parsed.
         {
             char[] chars = line.ToCharArray();
-
-            string strE = "e";
-            char e = char.Parse(strE);
-
-            string strW = "w";
-            char w = char.Parse(strW);
-
-            string strN = "n";
-            char n = char.Parse(strN);
-
-            string strS = "s";
-            char s = char.Parse(strS);
             
             for (int i = 0; i < chars.Length; i++)
             {
-                Console.WriteLine(chars[i]);
-                if (chars[i] == e)
+                switch (chars[i])
                 {
-                    //Console.WriteLine("this is the character {0} at index {1}", chars[i], i);
-                }
-                else if (chars[i] == w)
-                {
-                    //Console.WriteLine("this is the character {0} at index {1}", chars[i], i);
-                }
-                else if (chars[i] == n)
-                {
-                    if (chars[i + 1] == e || chars[i + 1] == w)
-                    {
-                        //Console.WriteLine("this is the character {0} at index {1}", chars[i], i);
-                        
-                    }
-                    else
-                    {
-                        //Console.WriteLine("1 else false");
+                    case 'e':
+                        break;
 
-                        return false;
-                    }
-                }
-                else if (chars[i] == s)
-                {
-                    if (chars[i + 1] == e || chars[i + 1] == w)
-                    {
-                        //Console.WriteLine("this is the character {0} at index {1}", chars[i], i);
-                        //i = i + 1;
-                    }
-                    else
-                    {
-                        //Console.WriteLine("2 else false");
+                    case 'w':
+                        break;
 
+                    case 'n':
+                        if (chars[i + 1] == 'e' || chars[i + 1] == 'w')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    case 's':
+                        if (chars[i + 1] == 'e' || chars[i + 1] == 'w')
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    default:
                         return false;
-                    }
-                }
-                else
-                {
-                    //Console.WriteLine("end else false");
-                    return false;
                 }
             }
-            //Console.WriteLine("got here");
             return true;
         }
-        public (int, int) MoveThroughLine((int, int) coordinate, string line)
+        public static (int, int) MoveThroughLine((int, int) coordinate, string line)
         //This method will move a coordinate through a set of instructions in the form of a line,
         //then it will return the final destination of the coordinate.
         {
@@ -77,40 +53,83 @@ namespace hex_template
 
             for (int i = 0; i < chars.Length; i++)
             {
+                switch (chars[i])
+                {
+                    case 'e':
+                        coordinate = MoveEast(coordinate);
+                        break;
 
+                    case 'w':
+                        coordinate = MoveWest(coordinate);
+                        break;
+
+                    case 'n':
+                        if (chars[i + 1] == 'e')
+                        {
+                            coordinate = MoveNorthEast(coordinate);
+                            i++;
+                        }
+                        else
+                        {
+                            coordinate = MoveNorthWest(coordinate);
+                            i++;
+                        }
+                        break;
+
+                    case 's':
+                        if (chars[i + 1] == 'e')
+                        {
+                            coordinate = MoveSouthEast(coordinate);
+                            i++;
+                        }
+                        else
+                        {
+                            coordinate = MoveSouthWest(coordinate);
+                            i++;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
             }
-
             return coordinate;
         }
-        public void MoveEast((int, int) coordinate)
+        public static (int, int) MoveEast((int, int) coordinate)
         //This method change the coordinate so that it has moved east.
         {
-            throw new NotImplementedException();
+            coordinate = (coordinate.Item1 + 2, coordinate.Item2);
+            return coordinate;
         }
-        public void MoveWest((int, int) coordinate)
+        public static (int, int) MoveWest((int, int) coordinate)
         //This method change the coordinate so that it has moved west.
         {
-            throw new NotImplementedException();
+            coordinate = (coordinate.Item1 - 2, coordinate.Item2);
+            return coordinate;
         }
-        public void NorthEast((int, int) coordinate)
+        public static (int, int) MoveNorthEast((int, int) coordinate)
         //This method change the coordinate so that it has moved northeast.
         {
-            throw new NotImplementedException();
+            coordinate = (coordinate.Item1 + 1, coordinate.Item2 + 1);
+            return coordinate;
         }
-        public void NorthWest((int, int) coordinate)
+        public static (int, int) MoveNorthWest((int, int) coordinate)
         //This method change the coordinate so that it has moved northwest.
         {
-            throw new NotImplementedException();
+            coordinate = (coordinate.Item1 - 1, coordinate.Item2 + 1);
+            return coordinate;
         }
-        public void SouthEast((int, int) coordinate)
+        public static (int, int) MoveSouthEast((int, int) coordinate)
         //This method change the coordinate so that it has moved southeast.
         {
-            throw new NotImplementedException();
+            coordinate = (coordinate.Item1 + 1, coordinate.Item2 - 1);
+            return coordinate;
         }
-        public void SouthWest((int, int) coordinate)
+        public static (int, int) MoveSouthWest((int, int) coordinate)
         //This method change the coordinate so that it has moved southwest.
         {
-            throw new NotImplementedException();
+            coordinate = (coordinate.Item1 - 1, coordinate.Item2 - 1);
+            return coordinate;
         }
     }
 }

@@ -1,3 +1,5 @@
+using hex_template;
+
 namespace HexTemplateSpecs.Specs.StepDefinitions
 {
     [Binding]
@@ -12,97 +14,116 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         [Given(@"the line: (.*)")]
         public void GivenTheLine(string line)
         {
-            context.Add("line", line); //Probably something like this.
-        }
+            (int, int) coordinate = (0, 0);
+            context.Add("coordinate", coordinate); //It needs to add coordinate to the dictionary for future tests.
 
-        [When(@"the text is parsed")]
-        public void WhenTheTextIsParsed()
-        {
-            throw new PendingStepException();
+            context.Remove("line");
+            context.Add("line", line);
         }
 
         [Then(@"it can be parsed")]
         public void ThenItCanBeParsed()
         {
-            throw new PendingStepException();
+            bool parsedOrNot = Movement.ParseLine(context.Get<string>("line"));
+            parsedOrNot.Should().BeTrue();
         }
 
         [Then(@"it can't be parsed")]
         public void ThenItCantBeParsed()
         {
-            throw new PendingStepException();
+            bool parsedOrNot = Movement.ParseLine(context.Get<string>("line"));
+            parsedOrNot.Should().BeFalse();
         }
 
         [Given(@"you are at the origin")]
         public void GivenYouAreAtTheOrigin()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = (0, 0);
+            context.Add("coordinate", coordinate);
         }
 
         [When(@"you go E")]
         public void WhenYouGoE()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = context.Get<(int, int)>("coordinate");
+            coordinate = Movement.MoveEast(coordinate);
+
+            context.Remove("coordinate");
+            context.Add("coordinate", coordinate);
         }
 
         [When(@"you go W")]
         public void WhenYouGoW()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = context.Get<(int, int)>("coordinate");
+            coordinate = Movement.MoveWest(coordinate);
+
+            context.Remove("coordinate");
+            context.Add("coordinate", coordinate);
         }
 
         [When(@"you go NE")]
         public void WhenYouGoNE()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = context.Get<(int, int)>("coordinate");
+            coordinate = Movement.MoveNorthEast(coordinate);
+
+            context.Remove("coordinate");
+            context.Add("coordinate", coordinate);
         }
 
         [When(@"you go NW")]
         public void WhenYouGoNW()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = context.Get<(int, int)>("coordinate");
+            coordinate = Movement.MoveNorthWest(coordinate);
+
+            context.Remove("coordinate");
+            context.Add("coordinate", coordinate);
         }
 
         [When(@"you go SE")]
         public void WhenYouGoSE()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = context.Get<(int, int)>("coordinate");
+            coordinate = Movement.MoveSouthEast(coordinate);
+
+            context.Remove("coordinate");
+            context.Add("coordinate", coordinate);
         }
 
         [When(@"you go SW")]
         public void WhenYouGoSW()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = context.Get<(int, int)>("coordinate");
+            coordinate = Movement.MoveSouthWest(coordinate);
+
+            context.Remove("coordinate");
+            context.Add("coordinate", coordinate);
         }
 
-        [Then(@"it moves to \((.*)\)")]
-        public void ThenItMovesTo((int, int) coordinate)
+        [Then(@"it moves to \((.*),(.*)\)")] 
+        public void ThenItMovesTo(int p0, int p1)
         {
-            throw new PendingStepException();
+            context.Get<(int, int)>("coordinate").Item1.Should().Be(p0);
+            context.Get<(int, int)>("coordinate").Item2.Should().Be(p1);
         }
 
-        //[Then(@"it moves to \((.*),(.*)\)")] //This could end up being a useful step definition so I left it commented out for now.
-        //public void ThenItMovesTo(int p0, int p1)
-        //{
-        //    throw new PendingStepException();
-        //}
-
-        [Then(@"you end up at \((.*)\)")]
-        public void ThenYouEndUpAt((int, int) coordinate)
+        [Then(@"you end up at \((.*),(.*)\)")] 
+        public void ThenYouEndUpAt(int p0, int p1)
         {
-            throw new PendingStepException();
+            context.Get<(int, int)>("coordinate").Item1.Should().Be(p0);
+            context.Get<(int, int)>("coordinate").Item2.Should().Be(p1);
         }
-
-        //[Then(@"you end up at \((.*),(.*)\)")] //This could end up being a useful step definition so I left it commented out for now.
-        //public void ThenYouEndUpAt(int p0, int p1)
-        //{
-        //    throw new PendingStepException();
-        //}
 
         [When(@"you read the line")]
         public void WhenYouReadTheLine()
         {
-            throw new PendingStepException();
+            (int, int) coordinate = context.Get<(int, int)>("coordinate");
+            coordinate = Movement.MoveThroughLine(coordinate, context.Get<string>("line"));
+
+            context.Remove("coordinate");
+            context.Add("coordinate", coordinate);
         }
     }
 }

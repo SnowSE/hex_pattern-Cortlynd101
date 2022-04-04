@@ -20,10 +20,16 @@ namespace hex_template
         static void Main(string[] args)
         {
             string line;
-            System.IO.StreamReader file = new(@"C:\Users\Cortl\Source\Repos\hex_pattern-Cortlynd101\sample.txt"); //This will need to be changed for your individual machine!!!
+            System.IO.StreamReader file = new(@"C:\Users\Cortl\Source\Repos\hex_pattern-Cortlynd101\HexTemplate\sample.txt"); //This will need to be changed for your individual machine!!!
+
+            (int, int) finalPosition = (0, 0);
+
             while ((line = file.ReadLine()) != null)
             {
                 Console.WriteLine("Students can work on this line now: {0}", line);
+                finalPosition = Movement.MoveThroughLine(finalPosition, line);
+                Console.WriteLine($"Final Postion is {finalPosition}");
+                finalPosition = (0, 0);
             }
             file.Close();
             int NumberBlackTitles = 0;
