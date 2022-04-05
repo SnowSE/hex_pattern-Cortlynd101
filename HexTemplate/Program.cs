@@ -28,35 +28,13 @@ namespace hex_template
             while ((line = file.ReadLine()) != null)
             {
                 Console.WriteLine("Students can work on this line now: {0}", line);
-                if (Movement.ParseLine(line))
-                {
-                    finalPosition = Movement.MoveThroughLine(finalPosition, line);
-                    Console.WriteLine($"Final Postion is {finalPosition}");
-
-                    if (tileDictionary.Tiles.ContainsKey(finalPosition) == false)
-                    {
-                        tileDictionary.Tiles.Add(finalPosition, true);
-                    }
-                    else
-                    {
-                        tileDictionary.flip(finalPosition);
-                    }
-                    
-                }
-                else
-                {
-                    Console.WriteLine($"This line can not be parsed. ");
-                }
-                
-                finalPosition = (0, 0);
+                TileDictionary.handleFinalDestination(tileDictionary, finalPosition, line);
             }
 
-            int blackTiles = tileDictionary.CountsBlackTiles();
-            Console.WriteLine($"Total number of black tiles: {blackTiles}");
+            int numberBlackTiles = tileDictionary.countsBlackTiles();
+            Console.WriteLine($"Total number of black tiles: {numberBlackTiles}");
 
             file.Close();
-            int NumberBlackTitles = 0;
-            Console.WriteLine("{0} tiles are black", NumberBlackTitles);
         }
     }
 }

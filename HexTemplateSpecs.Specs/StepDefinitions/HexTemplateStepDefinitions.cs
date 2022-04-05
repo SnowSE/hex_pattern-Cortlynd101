@@ -24,14 +24,14 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         [Then(@"it can be parsed")]
         public void ThenItCanBeParsed()
         {
-            bool parsedOrNot = Movement.ParseLine(context.Get<string>("line"));
+            bool parsedOrNot = MovementMethods.canParseLine(context.Get<string>("line"));
             parsedOrNot.Should().BeTrue();
         }
 
         [Then(@"it can't be parsed")]
         public void ThenItCantBeParsed()
         {
-            bool parsedOrNot = Movement.ParseLine(context.Get<string>("line"));
+            bool parsedOrNot = MovementMethods.canParseLine(context.Get<string>("line"));
             parsedOrNot.Should().BeFalse();
         }
 
@@ -46,7 +46,7 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         public void WhenYouGoE()
         {
             (int, int) coordinate = context.Get<(int, int)>("coordinate");
-            coordinate = Movement.MoveEast(coordinate);
+            coordinate = MovementMethods.moveEast(coordinate);
 
             context.Remove("coordinate");
             context.Add("coordinate", coordinate);
@@ -56,7 +56,7 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         public void WhenYouGoW()
         {
             (int, int) coordinate = context.Get<(int, int)>("coordinate");
-            coordinate = Movement.MoveWest(coordinate);
+            coordinate = MovementMethods.moveWest(coordinate);
 
             context.Remove("coordinate");
             context.Add("coordinate", coordinate);
@@ -66,7 +66,7 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         public void WhenYouGoNE()
         {
             (int, int) coordinate = context.Get<(int, int)>("coordinate");
-            coordinate = Movement.MoveNorthEast(coordinate);
+            coordinate = MovementMethods.moveNorthEast(coordinate);
 
             context.Remove("coordinate");
             context.Add("coordinate", coordinate);
@@ -76,7 +76,7 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         public void WhenYouGoNW()
         {
             (int, int) coordinate = context.Get<(int, int)>("coordinate");
-            coordinate = Movement.MoveNorthWest(coordinate);
+            coordinate = MovementMethods.moveNorthWest(coordinate);
 
             context.Remove("coordinate");
             context.Add("coordinate", coordinate);
@@ -86,7 +86,7 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         public void WhenYouGoSE()
         {
             (int, int) coordinate = context.Get<(int, int)>("coordinate");
-            coordinate = Movement.MoveSouthEast(coordinate);
+            coordinate = MovementMethods.moveSouthEast(coordinate);
 
             context.Remove("coordinate");
             context.Add("coordinate", coordinate);
@@ -96,7 +96,7 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         public void WhenYouGoSW()
         {
             (int, int) coordinate = context.Get<(int, int)>("coordinate");
-            coordinate = Movement.MoveSouthWest(coordinate);
+            coordinate = MovementMethods.moveSouthWest(coordinate);
 
             context.Remove("coordinate");
             context.Add("coordinate", coordinate);
@@ -120,7 +120,7 @@ namespace HexTemplateSpecs.Specs.StepDefinitions
         public void WhenYouReadTheLine()
         {
             (int, int) coordinate = context.Get<(int, int)>("coordinate");
-            coordinate = Movement.MoveThroughLine(coordinate, context.Get<string>("line"));
+            coordinate = MovementMethods.moveThroughLine(coordinate, context.Get<string>("line"));
 
             context.Remove("coordinate");
             context.Add("coordinate", coordinate);
