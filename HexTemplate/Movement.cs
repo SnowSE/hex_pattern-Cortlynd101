@@ -2,9 +2,9 @@
 
 namespace hex_template
 {
-    public class Movement
+    public class MovementMethods
     {
-        public static bool ParseLine(string line)
+        public static bool canParseLine(string line)
         //This method returns a bool representing wether or not the line can be parsed.
         {
             char[] chars = line.ToCharArray();
@@ -45,7 +45,7 @@ namespace hex_template
             }
             return true;
         }
-        public static (int, int) MoveThroughLine((int, int) coordinate, string line)
+        public static (int, int) moveThroughLine((int, int) coordinate, string line)
         //This method will move a coordinate through a set of instructions in the form of a line,
         //then it will return the final destination of the coordinate.
         {
@@ -56,22 +56,22 @@ namespace hex_template
                 switch (chars[i])
                 {
                     case 'e':
-                        coordinate = MoveEast(coordinate);
+                        coordinate = moveEast(coordinate);
                         break;
 
                     case 'w':
-                        coordinate = MoveWest(coordinate);
+                        coordinate = moveWest(coordinate);
                         break;
 
                     case 'n':
                         if (chars[i + 1] == 'e')
                         {
-                            coordinate = MoveNorthEast(coordinate);
+                            coordinate = moveNorthEast(coordinate);
                             i++;
                         }
                         else
                         {
-                            coordinate = MoveNorthWest(coordinate);
+                            coordinate = moveNorthWest(coordinate);
                             i++;
                         }
                         break;
@@ -79,12 +79,12 @@ namespace hex_template
                     case 's':
                         if (chars[i + 1] == 'e')
                         {
-                            coordinate = MoveSouthEast(coordinate);
+                            coordinate = moveSouthEast(coordinate);
                             i++;
                         }
                         else
                         {
-                            coordinate = MoveSouthWest(coordinate);
+                            coordinate = moveSouthWest(coordinate);
                             i++;
                         }
                         break;
@@ -95,37 +95,37 @@ namespace hex_template
             }
             return coordinate;
         }
-        public static (int, int) MoveEast((int, int) coordinate)
+        public static (int, int) moveEast((int, int) coordinate)
         //This method change the coordinate so that it has moved east.
         {
             coordinate = (coordinate.Item1 + 2, coordinate.Item2);
             return coordinate;
         }
-        public static (int, int) MoveWest((int, int) coordinate)
+        public static (int, int) moveWest((int, int) coordinate)
         //This method change the coordinate so that it has moved west.
         {
             coordinate = (coordinate.Item1 - 2, coordinate.Item2);
             return coordinate;
         }
-        public static (int, int) MoveNorthEast((int, int) coordinate)
+        public static (int, int) moveNorthEast((int, int) coordinate)
         //This method change the coordinate so that it has moved northeast.
         {
             coordinate = (coordinate.Item1 + 1, coordinate.Item2 + 1);
             return coordinate;
         }
-        public static (int, int) MoveNorthWest((int, int) coordinate)
+        public static (int, int) moveNorthWest((int, int) coordinate)
         //This method change the coordinate so that it has moved northwest.
         {
             coordinate = (coordinate.Item1 - 1, coordinate.Item2 + 1);
             return coordinate;
         }
-        public static (int, int) MoveSouthEast((int, int) coordinate)
+        public static (int, int) moveSouthEast((int, int) coordinate)
         //This method change the coordinate so that it has moved southeast.
         {
             coordinate = (coordinate.Item1 + 1, coordinate.Item2 - 1);
             return coordinate;
         }
-        public static (int, int) MoveSouthWest((int, int) coordinate)
+        public static (int, int) moveSouthWest((int, int) coordinate)
         //This method change the coordinate so that it has moved southwest.
         {
             coordinate = (coordinate.Item1 - 1, coordinate.Item2 - 1);
